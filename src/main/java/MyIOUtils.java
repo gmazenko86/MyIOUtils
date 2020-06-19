@@ -10,10 +10,21 @@ public class MyIOUtils {
         System.out.print(str);
         System.out.print("\033[0m"); // This resets the text back to default
     }
+
+    static  public void printlnRedText(String str){
+        printRedText(str);
+        System.out.println();
+    }
+
     static public void printYellowText(String str){
         System.out.print("\033[33m"); // This turns the text to Yellow
         System.out.print(str);
         System.out.print("\033[0m"); // This resets the text back to default
+    }
+
+    static  public void printlnYellowText(String str){
+        printYellowText(str);
+        System.out.println();
     }
 
     static public void printGreenText(String str){
@@ -22,10 +33,20 @@ public class MyIOUtils {
         System.out.print("\033[0m"); // This resets the text back to default
     }
 
+    static  public void printlnGreenText(String str){
+        printGreenText(str);
+        System.out.println();
+    }
+
     static public void printBlueText(String str){
         System.out.print("\033[34m"); // This turns the text to Blue
         System.out.print(str);
         System.out.print("\033[0m"); // This resets the text back to default
+    }
+
+    static  public void printlnBlueText(String str){
+        printBlueText(str);
+        System.out.println();
     }
 
     public static ArrayList<String> readLinesAsStrings(String inputPath){
