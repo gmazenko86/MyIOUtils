@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class MyIOUtils {
 
     static  public void printRedText(String str){
-        System.out.print("\033[31m"); // This turns the text to red
+        if(!runningWindows()){ setRedText();}
         System.out.print(str);
-        System.out.print("\033[0m"); // This resets the text back to default
+        if(!runningWindows()){ setDefaultText();}
     }
 
     static  public void printlnRedText(String str){
@@ -17,9 +17,9 @@ public class MyIOUtils {
     }
 
     static public void printYellowText(String str){
-        System.out.print("\033[33m"); // This turns the text to Yellow
+        if(!runningWindows()){ setYellowText();}
         System.out.print(str);
-        System.out.print("\033[0m"); // This resets the text back to default
+        if(!runningWindows()){ setDefaultText();}
     }
 
     static  public void printlnYellowText(String str){
@@ -28,9 +28,9 @@ public class MyIOUtils {
     }
 
     static public void printGreenText(String str){
-        System.out.print("\033[32m"); // This turns the text to Green
+        if(!runningWindows()){ setGreenText();}
         System.out.print(str);
-        System.out.print("\033[0m"); // This resets the text back to default
+        if(!runningWindows()){ setDefaultText();}
     }
 
     static  public void printlnGreenText(String str){
@@ -39,14 +39,47 @@ public class MyIOUtils {
     }
 
     static public void printBlueText(String str){
-        System.out.print("\033[34m"); // This turns the text to Blue
+        if(!runningWindows()){ setBlueText();}
         System.out.print(str);
-        System.out.print("\033[0m"); // This resets the text back to default
+        if(!runningWindows()){ setDefaultText();}
     }
 
     static  public void printlnBlueText(String str){
         printBlueText(str);
         System.out.println();
+    }
+
+    static void setDefaultText(){
+        System.out.print("\033[0m"); // This resets the text back to default
+    }
+
+    static void setRedText(){
+        System.out.print("\033[31m"); // This turns the text to red
+    }
+
+    static void setYellowText(){
+        System.out.print("\033[33m"); // This turns the text to Yellow
+    }
+
+    static void setGreenText(){
+        System.out.print("\033[32m"); // This turns the text to Green
+    }
+
+    static void setBlueText(){
+        System.out.print("\033[34m"); // This turns the text to Blue
+    }
+
+    static public String getOS(){
+        return System.getProperty("os.name");
+    }
+
+    static  public boolean runningWindows(){
+        boolean returnFlag;
+        String os = getOS();
+        String lowercase;
+        lowercase = os.toLowerCase();
+        returnFlag = lowercase.contains("windows");
+        return returnFlag;
     }
 
     public static ArrayList<String> readLinesAsStrings(String inputPath){
