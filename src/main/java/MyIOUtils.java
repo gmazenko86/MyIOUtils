@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class MyIOUtils {
@@ -82,7 +85,7 @@ public class MyIOUtils {
         return returnFlag;
     }
 
-    public static ArrayList<String> readLinesAsStrings(String inputPath){
+    static public ArrayList<String> readLinesAsStrings(String inputPath){
         try (BufferedReader br = new BufferedReader(new FileReader(inputPath))) {
             ArrayList<String> arrayList = new ArrayList<>();
             String line;
@@ -94,6 +97,11 @@ public class MyIOUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Path getResFilePath (String filename){
+        URL url = this.getClass().getResource(filename);
+        return Paths.get(url.getPath());
     }
 
 
