@@ -1,7 +1,11 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.nio.file.Path;
 
 public class MyIOUtilsTest {
-    static public void main(String... varargs){
+    @Test
+    void testMyIOUtils(){
         System.out.println("running windows = " + MyIOUtils.runningWindows());
         MyIOUtils.printlnRedText("This is Red text");
         MyIOUtils.printlnYellowText("This is Yellow text");
@@ -10,7 +14,8 @@ public class MyIOUtilsTest {
 
         MyIOUtils myIOUtils = new MyIOUtils();
         Path path = myIOUtils.getResFilePath("sample_string_input.txt");
-        System.out.println("\nThe path to the sample input file is:");
-        System.out.println(path);
+        String expectedPath = "/home/greg/javaProjects/MyIOUtils/target/classes/sample_string_input.txt";
+        boolean pathMatches = expectedPath.equals(path.toString());
+        Assertions.assertTrue(pathMatches, "Input file path does not match expected path");
     }
 }
