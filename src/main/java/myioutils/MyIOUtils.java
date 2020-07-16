@@ -3,9 +3,11 @@ package myioutils;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class MyIOUtils {
@@ -101,11 +103,29 @@ public class MyIOUtils {
         return null;
     }
 
+    static public double secElapsed(LocalDateTime time1, LocalDateTime time2){
+        long time1MicroSec = (time1.getMinute()*60 + time1.getSecond()) * 1000000
+                + time1.getNano()/1000;
+        long time2MicroSec = (time2.getMinute()*60 + time2.getSecond()) * 1000000
+                + time2.getNano()/1000;
+        long elapsed = time2MicroSec - time1MicroSec;
+        return (double)elapsed/1000000.;
+    }
+
     public Path getResFilePath (String filename){
         URL url = this.getClass().getResource(filename);
         return Paths.get(url.getPath());
     }
 
+    public InputStream getResAsStream (String filename){
+        System.out.println("getResAsStream object is " + this.toString());
+        return this.getClass().getResourceAsStream(filename);
+    }
+
+    public InputStream getResAsStream (String filename, Object object){
+        System.out.println("getResAsStream object is " + object.toString());
+        return object.getClass().getResourceAsStream(filename);
+    }
 
 }
 
